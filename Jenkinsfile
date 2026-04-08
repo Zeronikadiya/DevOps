@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = "your-dockerhub-username/java-app"
+        IMAGE = "zeronika/demo-app"
     }
 
     stages {

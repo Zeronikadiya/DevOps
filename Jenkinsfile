@@ -1,13 +1,13 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "YOUR_DOCKERHUB_USERNAME/my-java-app"
+        DOCKER_IMAGE = "zeronika/my-java-app"
         DOCKER_TAG   = "${BUILD_NUMBER}"
     }
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/YOUR_GITHUB_USERNAME/my-java-app.git'
+                git branch: 'main', url: 'https://github.com/Zeronikadiya/DevOps.git'
             }
         }
         stage('Build') {
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds',
                     usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                    sh '''echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'''
                     sh "docker push ${DOCKER_IMAGE}:${DOCKER_TAG}"
                     sh "docker push ${DOCKER_IMAGE}:latest"
                 }
@@ -46,4 +46,3 @@ pipeline {
         failure { echo 'Pipeline failed!' }
     }
 }
-EOF

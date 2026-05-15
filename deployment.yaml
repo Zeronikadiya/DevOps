@@ -14,4 +14,7 @@ spec:
     spec:
       containers:
       - name: java-app
-        image: YOUR_DOCKERHUB_USERNAME/my-java-app:latest
+        image: zeronika/my-java-app:latest
+
+
+        

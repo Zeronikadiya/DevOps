@@ -16,17 +16,16 @@ spec:
       - name: java-app
         image: zeronika/my-java-app:latest
         ports:
-        - containerPort: 8080        # <-- ADDED: was missing before
-        readinessProbe:              # <-- ADDED: waits for Spring Boot to start
+        - containerPort: 8080        # ADDED: was missing before
+        readinessProbe:              # ADDED: waits for Spring Boot to start
           httpGet:
             path: /
             port: 8080
           initialDelaySeconds: 20
           periodSeconds: 10
-        livenessProbe:               # <-- ADDED: restarts pod if it hangs
+        livenessProbe:               # ADDED: restarts pod if it hangs
           httpGet:
             path: /
             port: 8080
           initialDelaySeconds: 40
           periodSeconds: 15
-
